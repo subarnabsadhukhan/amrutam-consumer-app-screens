@@ -7,7 +7,7 @@ const Askbar = () => {
   return (
     <div className="w-full border-b-4 border-neutral-500 border-opacity-10">
       <div className="my-8 flex items-center justify-center md:my-[48px]">
-        <div className="flex w-11/12 flex-col items-center justify-center gap-6 md:flex-row md:gap-[35.8px] lg:w-fit">
+        <div className="flex w-11/12 flex-col items-center justify-center gap-4 md:flex-row md:gap-[35.8px] lg:w-fit">
           {/* User Avatar & Name */}
           <div className="flex items-center gap-[18px]">
             <img

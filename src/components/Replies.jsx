@@ -1,12 +1,12 @@
-import { ReactSVG } from "react-svg";
 import PostHeader from "./PostHeader";
+import DotSvg from "../assets/dot.svg?react";
 
 const Replies = () => {
   return (
     <div className="mt-1 flex flex-col items-end gap-4 border-b-2 border-[#ededed] pb-6">
       <div className="flex w-full items-center gap-[15.2px] font-poppins text-base font-semibold leading-[19.77px] text-[#8D8D8D]">
         <div>Replies</div>
-        <ReactSVG className="h-[4px] w-[4px]" src="/dot.svg" />
+        <DotSvg className="size-[4px]" src="/dot.svg" />
         <div className="text-[#3A643B]">1 reply</div>
       </div>
       <div className="flex w-11/12 flex-col gap-[18px] rounded-lg bg-[#f3faf1] px-[22px] py-[16px]">

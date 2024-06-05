@@ -3,6 +3,7 @@ import SendSvg from "../assets/send.svg?react";
 import MessageSvg from "../assets/message.svg?react";
 import DotSvg from "../assets/dot.svg?react";
 import HeartSolidSvg from "../assets/heart-solid.svg?react";
+import { Fragment, useState } from "react";
 
 const comments = [
   {
@@ -24,40 +25,70 @@ const comments = [
 ];
 
 const Socials = () => {
+  const [isShowComments, setIsShowComments] = useState(false);
+  const handleShowComments = () => setIsShowComments((i) => !i);
   return (
     <div className="mt-1 flex flex-col items-end gap-10">
-      <SocialButtonsPanel />
-      <AddComment avatar={`/person1.png`} />
-      <Comments />
+      <SocialButtonsPanel
+        isShowComments={isShowComments}
+        onShowComments={handleShowComments}
+      />
+      {isShowComments && (
+        <Fragment>
+          <AddComment avatar={`/person1.png`} />
+          <Comments />
+        </Fragment>
+      )}
     </div>
   );
 };
 
 export default Socials;
 
-const SocialButtonsPanel = () => {
+const SocialButtonsPanel = ({ onShowComments, isShowComments }) => {
   return (
-    <div className="mx-auto flex gap-5 sm:gap-[64.58px]">
+    <div className="mx-auto flex gap-5 pb-5 sm:gap-[64.58px]">
       <SocialButton link="heart" label="Favours" number={23} />
-      <SocialButton link="comment" label="Comments" number={2} />
+      <SocialButton
+        onClick={onShowComments}
+        isShowComments={isShowComments}
+        link="comment"
+        label="Comments"
+        number={2}
+      />
       <SocialButton link="send" label="Shares" number={23} />
     </div>
   );
 };
 
-const SocialButton = ({ link, label, number }) => {
+const SocialButton = ({ link, label, number, onClick, isShowComments }) => {
   return (
-    <div className="group flex items-center justify-center gap-[7.8px] font-poppins text-[12.96px] font-medium text-[#8D8D8D] hover:cursor-pointer hover:text-[#3A643B]">
+    <div
+      onClick={onClick}
+      className="group flex items-center justify-center gap-[7.8px] font-poppins text-[12.96px] font-medium text-[#8D8D8D] hover:cursor-pointer hover:text-[#3A643B]"
+    >
       {link === "heart" && (
-        <HeartSvg className="h-[19.2px] group-hover:cursor-pointer group-hover:fill-[#3A643B]" />
+        <>
+          <HeartSvg className="h-[19.2px] group-hover:cursor-pointer group-hover:fill-[#3A643B]" />
+          <div className={`whitespace-nowrap`}>{`${number} ${label}`}</div>
+        </>
       )}
       {link === "send" && (
-        <SendSvg className="h-[19.2px] group-hover:cursor-pointer group-hover:fill-[#3A643B]" />
+        <>
+          <SendSvg className="h-[19.2px] group-hover:cursor-pointer group-hover:fill-[#3A643B]" />
+          <div className={`whitespace-nowrap`}>{`${number} ${label}`}</div>
+        </>
       )}
       {link === "comment" && (
-        <MessageSvg className="h-[19.2px] group-hover:cursor-pointer group-hover:fill-[#3A643B]" />
+        <>
+          <MessageSvg
+            className={`h-[19.2px] group-hover:cursor-pointer group-hover:fill-[#3A643B] ${isShowComments ? "fill-[#3A643B]" : ""}`}
+          />
+          <div
+            className={`whitespace-nowrap ${isShowComments ? "text-[#3a643b]" : ""}`}
+          >{`${number} ${label}`}</div>
+        </>
       )}
-      <div className="whitespace-nowrap">{`${number} ${label}`}</div>
     </div>
   );
 };
@@ -79,7 +110,7 @@ const AddComment = ({ avatar }) => {
 
 const Comments = () => {
   return (
-    <div className="-mt-4 flex w-11/12 flex-col pl-1">
+    <div className="-mt-4 flex w-11/12 flex-col pl-1 sm:w-10/12">
       {comments.map((comment, i) => (
         <div
           key={comment.id}
