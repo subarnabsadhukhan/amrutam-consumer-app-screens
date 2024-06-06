@@ -1,6 +1,9 @@
+import useForumPost from "../hooks/useForumPost";
+
 const AddReply = () => {
+  const { setIsShowAddReply } = useForumPost();
   return (
-    <div className="mt-5 flex w-11/12 gap-[41px]">
+    <div className="mt-5 flex w-11/12 gap-5 sm:gap-[41px]">
       <img src="/person2.png" className="size-[52px] rounded-full" />
       <div className="flex flex-1 flex-col gap-3">
         <textarea
@@ -14,7 +17,10 @@ const AddReply = () => {
           placeholder="Add attachments"
         />
         <div className="mt-1.5 flex gap-5 self-end">
-          <button className="rounded-lg border border-solid border-[#3a643b] px-4 py-2.5 text-center font-poppins text-[14px] font-medium tracking-[-0.01em] text-[#3a643b] sm:w-[116px]">
+          <button
+            onClick={() => setIsShowAddReply(false)}
+            className="rounded-lg border border-solid border-[#3a643b] px-4 py-2.5 text-center font-poppins text-[14px] font-medium tracking-[-0.01em] text-[#3a643b] sm:w-[116px]"
+          >
             Cancel
           </button>
           <button className="rounded-lg bg-[#3a643b] px-4 py-2.5 text-center font-poppins text-[14px] font-medium tracking-[-0.01em] text-white sm:w-[116px]">

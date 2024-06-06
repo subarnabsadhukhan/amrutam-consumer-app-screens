@@ -1,3 +1,4 @@
+import ForumPostProvider from "../context/ForumPostContext";
 import ForumPost from "./ForumPost";
 import SearchBar from "./SearchBar";
 
@@ -6,7 +7,9 @@ const SinglePost = () => {
     <>
       <SearchBar />
       <div className="w-full space-y-10 py-12">
-        <ForumPost />
+        <ForumPostProvider>
+          <ForumPost />
+        </ForumPostProvider>
       </div>
     </>
   );

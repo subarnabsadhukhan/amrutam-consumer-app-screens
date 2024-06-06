@@ -2,6 +2,7 @@ import PostHeader from "./PostHeader";
 import DotSvg from "../assets/dot.svg?react";
 import { Link, useParams } from "react-router-dom";
 import AddReply from "./AddReply";
+import useForumPost from "../hooks/useForumPost";
 
 const replies = [
   {
@@ -19,6 +20,7 @@ const replies = [
     date: "3 days ago",
     reply:
       "Integrating mindfulness and meditation practices into daily routines can significantly enhance mental clarity and emotional stability. These techniques help individuals to manage stress more effectively and foster a sense of inner peace and resilience. Moreover, regular practice of mindfulness can lead to lasting changes in the brain, improving overall mental health and well-being. It's important to find a routine that works for you and stick with it, as consistency is key to reaping the full benefits.",
+    images: ["/hair-care-1.jpg", "/product1.png"],
   },
   {
     id: 3,
@@ -35,6 +37,7 @@ const replies = [
     date: "1 day ago",
     reply:
       "Physical activities like yoga and tai chi not only improve physical health but also enhance mental wellness. These practices promote relaxation, reduce anxiety, and increase mindfulness, contributing to overall psychological balance. Engaging in regular physical activity can also improve your mood and energy levels, providing a natural way to combat depression and anxiety. Additionally, the social aspect of group classes can help build a support network, further boosting mental health.",
+    images: ["/hair-care-3.jpg", "/product1.png"],
   },
   {
     id: 5,
@@ -48,7 +51,7 @@ const replies = [
 
 const Replies = () => {
   const { id } = useParams();
-  console.log(id);
+  const { isShowAddReply } = useForumPost();
 
   return (
     <div className="mt-1 flex flex-col items-end gap-4 border-b-2 border-[#ededed] pb-6">
@@ -59,15 +62,7 @@ const Replies = () => {
       </div>
       {replies.map((reply, i) => {
         if (!id && i > 2) return null;
-        return (
-          <Reply
-            key={reply.id}
-            name={reply.name}
-            avatar={reply.avatar}
-            date={reply.date}
-            reply={reply.reply}
-          />
-        );
+        return <Reply key={reply.id} reply={reply} />;
       })}
       {replies.length > 3 && !id && (
         <Link
@@ -77,21 +72,38 @@ const Replies = () => {
           View All Replies
         </Link>
       )}
-      <AddReply />
+      {isShowAddReply && <AddReply />}
     </div>
   );
 };
 
 export default Replies;
 
-const Reply = ({ name, avatar, date, reply }) => {
+const Reply = ({ reply }) => {
   return (
     <div className="flex w-11/12 flex-col gap-[18px] rounded-lg bg-[#f3faf1] px-[22px] py-[16px]">
-      <PostHeader name={name} avatar={avatar} date={date} />
+      <PostHeader
+        name={reply.name}
+        avatar={reply.avatar}
+        place="reply"
+        date={reply.date}
+      />
       <div className="w-11/12 text-justify font-poppins text-base tracking-[0.01em] text-black sm:text-[18px] sm:leading-[28px]">
         <span className="font-semibold">{`Ans. `}</span>
-        <span>{reply}</span>
+        <span>{reply.reply}</span>
       </div>
+      {reply.images?.length > 0 && (
+        <div className="flex flex-wrap gap-4">
+          {reply.images.map((image) => (
+            <img
+              key={image}
+              className="size-[250px] rounded-xl object-cover"
+              alt="Post Image"
+              src={image}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
