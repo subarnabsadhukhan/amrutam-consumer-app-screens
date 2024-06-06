@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Forum from "./pages/Forum";
 import FindDoctors from "./pages/FindDoctors";
 import About from "./pages/About";
+import SinglePost from "./components/SinglePost";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/commune",
         element: <Forum />,
+      },
+      {
+        path: "/commune/post/:id",
+        element: <SinglePost />,
       },
       {
         path: "/find-doctors",

@@ -1,5 +1,5 @@
 import HeartSvg from "../assets/heart.svg?react";
-import SendSvg from "../assets/send.svg?react";
+import BookmarkSvg from "../assets/bookmark.svg?react";
 import MessageSvg from "../assets/message.svg?react";
 import DotSvg from "../assets/dot.svg?react";
 import HeartSolidSvg from "../assets/heart-solid.svg?react";
@@ -75,7 +75,7 @@ const SocialButton = ({ link, label, number, onClick, isShowComments }) => {
       )}
       {link === "send" && (
         <>
-          <SendSvg className="h-[19.2px] group-hover:cursor-pointer group-hover:fill-[#3A643B]" />
+          <BookmarkSvg className="h-[22px] group-hover:cursor-pointer group-hover:stroke-[#3A643B]" />
           <div className={`whitespace-nowrap`}>{`${number} ${label}`}</div>
         </>
       )}
