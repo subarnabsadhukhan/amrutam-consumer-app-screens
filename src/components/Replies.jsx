@@ -7,7 +7,13 @@ import AddReply from "./AddReply";
 import useForumPost from "../hooks/useForumPost";
 import ReactPlayer from "react-player";
 import PopOverMenu from "./PopOverMenu";
-import { CloseButton } from "@headlessui/react";
+import {
+  CloseButton,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
+  Transition,
+} from "@headlessui/react";
 
 const replies = [
   {
@@ -96,9 +102,32 @@ export default Replies;
 const Reply = ({ reply }) => {
   return (
     <div className="relative w-11/12">
-      <div className="absolute flex size-[30px] -translate-x-[120%] translate-y-1 items-center justify-center rounded-[50%] bg-[#FCDDB8] font-poppins text-[19.93px] leading-[31px] text-[#F9B25E] sm:-translate-x-[150%]">
-        <span>!</span>
-      </div>
+      <Popover className="absolute">
+        <PopoverButton className="flex size-[30px] -translate-x-[120%] translate-y-1 items-center justify-center rounded-[50%] bg-[#FCDDB8] font-poppins text-[19.93px] leading-[31px] text-[#F9B25E] focus:outline-none sm:-translate-x-[150%]">
+          <span>!</span>
+        </PopoverButton>
+
+        <Transition
+          enter="transition ease-out duration-200"
+          enterFrom="opacity-0 translate-y-1"
+          enterTo="opacity-100 translate-y-0"
+          leave="transition ease-in duration-150"
+          leaveFrom="opacity-100 translate-y-0"
+          leaveTo="opacity-0 translate-y-1"
+        >
+          <PopoverPanel
+            modal="true"
+            anchor={{ to: "right start", gap: 1 }}
+            className="mx-3 rounded-xl bg-white font-poppins text-sm/6 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          >
+            <div className="relative rounded-b-lg rounded-tl-none rounded-tr-lg bg-[#FCDDB8] px-[15px] py-[21px] shadow-[0px_0px_6px_rgba(0,_0,_0,_0.25)] md:w-full">
+              <div className="relative inline-block text-left font-poppins text-[16px] font-medium text-[#B26B17] md:w-[566px]">
+                {`Thank you for your contribution! Your answer is currently under review. It will be posted once it has been verified by our admin team. `}
+              </div>
+            </div>
+          </PopoverPanel>
+        </Transition>
+      </Popover>
       <div className="flex w-full flex-col gap-[18px] rounded-lg bg-[#f3faf1] px-[22px] py-[16px]">
         <PostHeader
           name={reply.name}
