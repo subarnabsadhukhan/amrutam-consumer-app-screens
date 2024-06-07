@@ -33,7 +33,7 @@ const Navbar = () => {
       {({ open }) => (
         <>
           <div>
-            <nav className="bg-customyellow-200">
+            <nav className="bg-[#fff7e2]">
               <div className="mx-auto max-w-full px-4 md:px-6">
                 <div className="flex h-24 w-full items-center justify-between">
                   <div className="block flex-shrink-0 lg:hidden">
@@ -52,13 +52,13 @@ const Navbar = () => {
                             <NavLink to={item.path} key={item.path}>
                               {({ isActive }) => (
                                 <li
-                                  className={`${isActive ? "text-customgreen-800 text-[22px] font-semibold" : "text-[20px]"} font-poppins group relative cursor-pointer capitalize duration-100 active:scale-95`}
+                                  className={`${isActive ? "text-[22px] font-semibold text-[#3a643b]" : "text-[20px]"} group relative cursor-pointer font-poppins capitalize duration-100 active:scale-95`}
                                 >
                                   <span className="whitespace-nowrap leading-[140%]">
                                     {item.name}
                                   </span>
                                   <span
-                                    className={`${isActive ? `bg-customgreen-800 group-hover:max-w-full` : "bg-neutral-700 group-hover:max-w-[88%]"} block h-[2.5px] max-w-0 whitespace-nowrap rounded-full transition-all duration-500 ease-in-out`}
+                                    className={`${isActive ? `bg-[#3a643b] group-hover:max-w-full` : "bg-neutral-700 group-hover:max-w-[88%]"} block h-[2.5px] max-w-0 whitespace-nowrap rounded-full transition-all duration-500 ease-in-out`}
                                   ></span>
                                   {/* Invisible pseudo-element to maintain space */}
                                   <span className="p0 invisible relative block h-0 text-[22px] font-bold">
@@ -71,10 +71,10 @@ const Navbar = () => {
                         </ul>
                       </nav>
                       <div className="flex gap-4 lg:ml-2">
-                        <button className="border-customgreen-800 bg-oldlace font-poppins text-customgreen-800 hover:border-customgreen-700 hover:text-customgreen-700 rounded-xl border-2 px-8 pb-3 pt-2 text-2xl transition duration-100 ease-in-out hover:-translate-y-0.5 active:scale-90">
+                        <button className="bg-oldlace rounded-xl border-2 border-[#3a643b] px-8 pb-3 pt-2 font-poppins text-2xl text-[#3a643b] transition duration-100 ease-in-out hover:-translate-y-0.5 hover:border-[#4e8750] hover:text-[#4e8750] active:scale-90">
                           Login
                         </button>
-                        <button className="bg-customgreen-800 font-poppins hover:bg-customgreen-700 whitespace-nowrap rounded-xl px-8 pb-3 pt-2 text-2xl text-white transition delay-75 duration-100 ease-in-out hover:-translate-y-0.5 active:scale-90">
+                        <button className="whitespace-nowrap rounded-xl bg-[#3a643b] px-8 pb-3 pt-2 font-poppins text-2xl text-white transition delay-75 duration-100 ease-in-out hover:-translate-y-0.5 hover:bg-[#4e8750] active:scale-90">
                           Sign-Up
                         </button>
                       </div>
@@ -84,7 +84,7 @@ const Navbar = () => {
                   <div className="-mr-2 flex lg:hidden">
                     <DisclosureButton
                       type="button"
-                      className="bg-customgreen-800 mr-3 inline-flex items-center justify-center rounded-md p-2 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      className="mr-3 inline-flex items-center justify-center rounded-md bg-[#3a643b] p-2 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       aria-controls="mobile-menu"
                       aria-expanded="false"
                     >
@@ -140,7 +140,7 @@ const Navbar = () => {
                       <NavLink to={item.path} key={item.path}>
                         {({ isActive }) => (
                           <DisclosureButton
-                            className={`font-poppins w-full text-left ${isActive ? `text-customgreen-800 font-semibold` : "text-neutral-700"} block rounded-md px-7 py-2 text-lg capitalize hover:text-black`}
+                            className={`w-full text-left font-poppins ${isActive ? `font-semibold text-[#3a643b]` : "text-neutral-700"} block rounded-md px-7 py-2 text-lg capitalize hover:text-black`}
                           >
                             {item.name}
                           </DisclosureButton>
@@ -148,10 +148,10 @@ const Navbar = () => {
                       </NavLink>
                     ))}
                     <div className="ml-7 flex gap-2 pt-3">
-                      <DisclosureButton className="border-customgreen-800 bg-oldlace font-poppins text-customgreen-800 block w-28 rounded-lg border-2 px-1.5 pb-2 pt-1 text-xl">
+                      <DisclosureButton className="bg-oldlace block w-28 rounded-lg border-2 border-[#3a643b] px-1.5 pb-2 pt-1 font-poppins text-xl text-[#3a643b]">
                         Login
                       </DisclosureButton>
-                      <DisclosureButton className="bg-customgreen-800 font-poppins block w-28 rounded-lg px-1.5 pb-2 pt-1 text-xl text-white">
+                      <DisclosureButton className="block w-28 rounded-lg bg-[#3a643b] px-1.5 pb-2 pt-1 font-poppins text-xl text-white">
                         Sign-Up
                       </DisclosureButton>
                     </div>
