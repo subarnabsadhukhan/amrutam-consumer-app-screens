@@ -2,6 +2,7 @@ import ShareSvg from "../assets/share.svg?react";
 import ReportSvg from "../assets/report.svg?react";
 import WriteSvg from "../assets/write.svg?react";
 import SettingSvg from "../assets/setting.svg?react";
+import VerticalTripleDotSvg from "../assets/vertical-triple-dot.svg?react";
 import {
   CloseButton,
   Popover,
@@ -29,7 +30,7 @@ const PostHeader = ({ name, avatar, date, place = "question" }) => {
 
       <Popover>
         <PopoverButton className="flex w-3 justify-center focus:outline-none data-[active]:text-black data-[hover]:text-black data-[focus]:outline-1 data-[focus]:outline-black">
-          <img src="/vertical-triple-dot.svg" />
+          <VerticalTripleDotSvg />
         </PopoverButton>
         <Transition
           enter="transition ease-out duration-200"

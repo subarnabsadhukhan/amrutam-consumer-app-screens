@@ -1,9 +1,13 @@
 import PostHeader from "./PostHeader";
 import DotSvg from "../assets/dot.svg?react";
+import DocumentSvg from "../assets/document.svg?react";
+import DownloadSvg from "../assets/download.svg?react";
 import { Link, useParams } from "react-router-dom";
 import AddReply from "./AddReply";
 import useForumPost from "../hooks/useForumPost";
 import ReactPlayer from "react-player";
+import PopOverMenu from "./PopOverMenu";
+import { CloseButton } from "@headlessui/react";
 
 const replies = [
   {
@@ -128,6 +132,47 @@ const Reply = ({ reply }) => {
                   controls={true}
                   url={video}
                   // light={<img src="/product1.png" alt="Video Thumbnail" />}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {reply.pdfs?.length > 0 && (
+          <div className="flex flex-wrap gap-4">
+            {reply.pdfs.map((pdf) => (
+              <div
+                className="flex w-full gap-4 rounded-lg border-[1.8px] border-solid border-neutral-300 px-[17px] py-[16px] sm:gap-[22px] md:w-[432px]"
+                key={pdf}
+              >
+                <div className="box-border rounded-lg bg-[#3a643b] px-[21px] py-[18px]">
+                  <DocumentSvg className="fill-neutral-300" />
+                </div>
+                <div className="flex w-full flex-col overflow-hidden">
+                  <div className="overflow-hidden overflow-ellipsis whitespace-nowrap font-poppins text-lg font-medium tracking-[-0.01em] text-black sm:text-[20px]">
+                    {pdf.slice(1).replace(/-/g, " ").replace(".pdf", "")}
+                  </div>
+                  <div className="flex gap-3 font-poppins text-[16px] font-medium tracking-[-0.01em] text-[#8D8D8D]">
+                    <span>1.2 MB</span>
+                    <span className="uppercase">pdf</span>
+                  </div>
+                </div>
+                <PopOverMenu
+                  render={() => (
+                    <CloseButton
+                      onClick={() => {
+                        window.open(pdf, "_blank");
+                      }}
+                      className="flex w-full cursor-pointer items-center justify-start gap-[21px] border-b-[1.5px] border-solid border-[#EDEDED] px-[20px] pb-[11px] pt-[10px] text-base"
+                    >
+                      <DownloadSvg className="h-[21px] cursor-pointer" />
+                      <span className="cursor-pointer select-none">
+                        Download
+                      </span>
+                    </CloseButton>
+                  )}
+                  dotClassNames={"size-5 fill-[#8D8D8D]"}
+                  panelWidth="150px"
                 />
               </div>
             ))}
